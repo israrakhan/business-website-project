@@ -2,10 +2,10 @@ pipeline {
     agent any
     
     environment {
-        APP_DIR = '/opt/checkout/chat-app'
+        APP_DIR = '/opt/checkout/DevOps-Challenge'
         DEPLOY_DIR = '/opt/deployment/react'
-        S3_BUCKET = 'your-s3-bucket-name'
-        AWS_REGION = 'us-east-1'
+        S3_BUCKET = 'devops-challenge-bucket0143'
+        AWS_REGION = 'ap-south-1'
     }
     
     stages {
@@ -13,8 +13,8 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        pm2 stop chat-app || true
-                        pm2 delete chat-app || true
+                        pm2 stop DevOps-Challenge || true
+                        pm2 delete DevOps-Challenge || true
                     '''
                 }
             }
@@ -59,7 +59,7 @@ pipeline {
                 script {
                     sh '''
                         cd ${DEPLOY_DIR}
-                        pm2 serve ${DEPLOY_DIR} 3000 --name "chat-app" --spa
+                        pm2 serve ${DEPLOY_DIR} 3000 --name "DevOps-Challenge" --spa
                         pm2 save
                     '''
                 }
